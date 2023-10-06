@@ -22,72 +22,30 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const {
-    user,
-    isAuthenticated,
-    loginWithRedirect,
-    logout,
-  } = useAuth0();
+  const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
   const toggle = () => setIsOpen(!isOpen);
 
   const logoutWithRedirect = () =>
     logout({
-        logoutParams: {
-          returnTo: window.location.origin,
-        }
+      logoutParams: {
+        returnTo: window.location.origin,
+      },
     });
 
   return (
-    <div className="nav-container">
+    <div className="">
       <Navbar color="light" light expand="md" container={false}>
         <Container>
-          <NavbarBrand className="logo" />
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
-            <Nav className="mr-auto" navbar>
-              <NavItem>
-                <NavLink
-                  tag={RouterNavLink}
-                  to="/"
-                  exact
-                  activeClassName="router-link-exact-active"
-                >
-                  Home
-                </NavLink>
-              </NavItem>
-              {isAuthenticated && (
-                <NavItem>
-                  <NavLink
-                    tag={RouterNavLink}
-                    to="/external-api"
-                    exact
-                    activeClassName="router-link-exact-active"
-                  >
-                    External API
-                  </NavLink>
-                </NavItem>
-              )}
-            </Nav>
-            <Nav className="d-none d-md-block" navbar>
-              {!isAuthenticated && (
-                <NavItem>
-                  <Button
-                    id="qsLoginBtn"
-                    color="primary"
-                    className="btn-margin"
-                    onClick={() => loginWithRedirect()}
-                  >
-                    Log in
-                  </Button>
-                </NavItem>
-              )}
+            <Nav className="" navbar>
               {isAuthenticated && (
                 <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav caret id="profileDropDown">
                     <img
                       src={user.picture}
                       alt="Profile"
-                      className="nav-user-profile rounded-circle"
+                      className=""
                       width="50"
                     />
                   </DropdownToggle>
@@ -96,24 +54,23 @@ const NavBar = () => {
                     <DropdownItem
                       tag={RouterNavLink}
                       to="/profile"
-                      className="dropdown-profile"
+                      className=""
                       activeClassName="router-link-exact-active"
                     >
-                      <FontAwesomeIcon icon="user" className="mr-3" /> Profile
+                      <FontAwesomeIcon icon="user" className="" /> Profile
                     </DropdownItem>
                     <DropdownItem
                       id="qsLogoutBtn"
                       onClick={() => logoutWithRedirect()}
                     >
-                      <FontAwesomeIcon icon="power-off" className="mr-3" /> Log
-                      out
+                      <FontAwesomeIcon icon="power-off" className="" /> Log out
                     </DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
               )}
             </Nav>
             {!isAuthenticated && (
-              <Nav className="d-md-none" navbar>
+              <Nav className="" navbar>
                 <NavItem>
                   <Button
                     id="qsLoginBtn"
@@ -127,24 +84,20 @@ const NavBar = () => {
               </Nav>
             )}
             {isAuthenticated && (
-              <Nav
-                className="d-md-none justify-content-between"
-                navbar
-                style={{ minHeight: 170 }}
-              >
+              <Nav className="" navbar style={{ minHeight: 170 }}>
                 <NavItem>
-                  <span className="user-info">
+                  <span className="">
                     <img
                       src={user.picture}
                       alt="Profile"
-                      className="nav-user-profile d-inline-block rounded-circle mr-3"
+                      className=""
                       width="50"
                     />
-                    <h6 className="d-inline-block">{user.name}</h6>
+                    <h6 className="">{user.name}</h6>
                   </span>
                 </NavItem>
                 <NavItem>
-                  <FontAwesomeIcon icon="user" className="mr-3" />
+                  <FontAwesomeIcon icon="user" className="" />
                   <RouterNavLink
                     to="/profile"
                     activeClassName="router-link-exact-active"
@@ -153,7 +106,7 @@ const NavBar = () => {
                   </RouterNavLink>
                 </NavItem>
                 <NavItem>
-                  <FontAwesomeIcon icon="power-off" className="mr-3" />
+                  <FontAwesomeIcon icon="power-off" className="" />
                   <RouterNavLink
                     to="#"
                     id="qsLogoutBtn"
